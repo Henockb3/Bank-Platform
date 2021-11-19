@@ -31,7 +31,7 @@ public static final class userMapper implements RowMapper<User>{
 
     @Override
     public User createUser(User user) {
-       final String INSERT_USER = "INSERT INTO user(userId,firstName,lastName,email,password)" +
+       final String INSERT_USER = "INSERT INTO user(firstName,lastName,email,password)" +
                "VALUES(?,?,?,?)";
        jdbc.update(INSERT_USER,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
        int newId = jdbc.queryForObject("SELECT MAX(userId) FROM user", Integer.class);
