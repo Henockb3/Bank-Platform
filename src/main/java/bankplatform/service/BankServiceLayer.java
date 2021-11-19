@@ -16,13 +16,18 @@ public class BankServiceLayer implements BankPlatformServiceLayer {
     AccountDao accountDao;
 
     @Override
-    public void createAccount(User user, Account account) {
+    public void createAccount( Account account) {
       //  User newUser = new User();
 
-        account.setUserId(user.getUserId());
-        dao.createUser(user);
+      //  account.setUserId(account.getUserId());
+
         accountDao.createAccount(account);
 
+    }
+
+    @Override
+    public void createUser(User user) {
+        dao.createUser(user);
     }
 
 

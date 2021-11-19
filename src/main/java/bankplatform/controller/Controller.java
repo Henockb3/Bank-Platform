@@ -16,9 +16,14 @@ public class Controller {
     @Autowired
     BankServiceLayer serviceLayer;
 
-    @PostMapping("/begin")
+    @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createGame(User user, Account account){
-        serviceLayer.createAccount(user,account);
+    public void createUser(@RequestBody User user){
+        serviceLayer.createUser(user);
     }
+    @PostMapping("/account")
+    public void createUser(@RequestBody Account account){
+        serviceLayer.createAccount(account);
+    }
+
 }
