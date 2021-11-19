@@ -27,4 +27,10 @@ public class Controller {
         serviceLayer.createAccount(account);
     }
 
+    @GetMapping("/userlist")
+    public List<User> getAllUsers() {
+        return serviceLayer.getAllUsers();
+    }
+
+
 }
