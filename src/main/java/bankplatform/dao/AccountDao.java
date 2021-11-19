@@ -10,4 +10,5 @@ public interface AccountDao {
     Account createAccount(User userId);
     List<Transaction> listAllTransactions(Account accountNumber);
     List<Transaction> getTransactionByDate(Transaction transactionDate);
+    Account transferMoney(Account amount);
 }
