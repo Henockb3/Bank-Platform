@@ -3,11 +3,15 @@ package bankplatform.dao;
 import bankplatform.dto.Account;
 import bankplatform.dto.Transaction;
 import bankplatform.dto.User;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Repository
 public class AccountDaoImpl implements AccountDao{
     @Override
+    @Transactional
     public Account createAccount(int userId) {
         return null;
     }

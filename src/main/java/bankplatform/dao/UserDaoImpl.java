@@ -1,9 +1,11 @@
 package bankplatform.dao;
 
 import bankplatform.dto.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +14,8 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    JdbcTemplate jdbc;//commetn
+    @Autowired
+    JdbcTemplate jdbc;
 
 public static final class userMapper implements RowMapper<User>{
 
@@ -30,6 +33,7 @@ public static final class userMapper implements RowMapper<User>{
 }
 
     @Override
+    @Transactional
     public User createUser(User user) {
        final String INSERT_USER = "INSERT INTO user(firstName,lastName,email,password)" +
                "VALUES(?,?,?,?)";
@@ -55,6 +59,7 @@ public static final class userMapper implements RowMapper<User>{
     }
 
     @Override
+    @Transactional
     public User removeUser() {
         return null;
     }
