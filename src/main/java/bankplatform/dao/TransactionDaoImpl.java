@@ -2,6 +2,7 @@ package bankplatform.dao;
 
 
 import bankplatform.dto.Transaction;
+import bankplatform.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +19,20 @@ public class TransactionDaoImpl implements TransactionDao{
   
   @Autowired
   private JdbcTemplate jdbcTemplate;
+
+  public static final class TransactionMapper implements RowMapper<Transaction>{
+
+    @Override
+    public Transaction mapRow(ResultSet resultSet, int i) throws SQLException {
+      Transaction transaction = new Transaction();
+      transaction.setTransactionId(resultSet.getInt("transactionId"));
+      transaction.setAccountNumber(resultSet.getInt("accountNumber"));
+      transaction.setTimeStamp(resultSet.getString("timeStamp"));
+      transaction.setTransactionAmount(resultSet.getBigDecimal("transactionAmount"));
+
+      return transaction;
+    }
+  }
   
   @Override
   public void add(Transaction transaction){
@@ -50,15 +65,9 @@ public class TransactionDaoImpl implements TransactionDao{
   }
 
   @Override
-  public Transaction getByAccountNumber(int accountNumber){
+  public List<Transaction> getByAccountNumber(int accountNumber){
     final String sql = "SELECT * FROM transaction WHERE accountNumber=" + accountNumber + ";";
     return jdbcTemplate.query(sql, new TransactionMapper());
   }
-  private static final class TransactionMapper implements RowMapper<Transaction> {
-        @Override
-        public Transaction mapRow(ResultSet rs, int index) throws SQLException {
-            Transaction transaction = new Transaction(rs.getInt("transactionId"),rs.getInt("accountNumber"),rs.getString("timeStamp"),rs.getBigDecimal("transactionAmount"));
-            return transaction;
-        }
-    }
+
 }
