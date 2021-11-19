@@ -1,6 +1,7 @@
 package bankplatform.dao;
 
 import bankplatform.dto.User;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -41,7 +42,13 @@ public static final class userMapper implements RowMapper<User>{
 
     @Override
     public User getUserByEmail(String email) {
+    try{
+        final String SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE userId = ?";
+        User user=jdbc.queryForObject(SELECT_USER_BY_EMAIL,new userMapper());
+        return user;
+    }catch(DataAccessException ex) {
         return null;
+    }
     }
 
     @Override
@@ -51,11 +58,14 @@ public static final class userMapper implements RowMapper<User>{
 
     @Override
     public List<User> getUserList() {
-        return null;
+        final String SELECT_USERS = "SELECT * FROM  user u ";
+        List<User> users = jdbc.query(SELECT_USERS,
+                new userMapper());
+        return users;
     }
 
     @Override
     public User removeUser() {
-        return null;
+    return null;
     }
 }
