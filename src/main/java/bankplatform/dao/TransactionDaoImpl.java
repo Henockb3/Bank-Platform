@@ -9,12 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.*;
 import java.util.List;
 
 @Repository
-@Profile("transaction")
 public class TransactionDaoImpl implements TransactionDao{
   
   @Autowired
@@ -33,8 +33,9 @@ public class TransactionDaoImpl implements TransactionDao{
       return transaction;
     }
   }
-  
+
   @Override
+  @Transactional
   public void add(Transaction transaction){
     final String sql = "INSERT INTO transaction(accountNumber,timeStamp,transactionAmount) VALUES(?,?,?);";
     GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
