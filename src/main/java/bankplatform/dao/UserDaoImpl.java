@@ -1,6 +1,7 @@
 package bankplatform.dao;
 
 import bankplatform.dto.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,6 +14,7 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+    @Autowired
     JdbcTemplate jdbc;//commetn
 
 public static final class userMapper implements RowMapper<User>{
@@ -58,7 +60,7 @@ public static final class userMapper implements RowMapper<User>{
 
     @Override
     public List<User> getUserList() {
-        final String SELECT_USERS = "SELECT * FROM  user u ";
+        final String SELECT_USERS = "SELECT * FROM  user";
         List<User> users = jdbc.query(SELECT_USERS,
                 new userMapper());
         return users;
