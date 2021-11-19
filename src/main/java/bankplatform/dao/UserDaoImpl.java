@@ -1,6 +1,7 @@
 package bankplatform.dao;
 
 import bankplatform.dto.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,8 +13,8 @@ import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-
-    JdbcTemplate jdbc;//commetn
+    @Autowired
+    JdbcTemplate jdbc;
 
 public static final class userMapper implements RowMapper<User>{
 
