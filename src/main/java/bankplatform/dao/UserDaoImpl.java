@@ -10,6 +10,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     JdbcTemplate jdbc;
+public static final class
 
     @Override
     public User createUser(User user) {

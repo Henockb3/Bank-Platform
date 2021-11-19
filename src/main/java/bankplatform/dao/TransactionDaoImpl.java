@@ -1,6 +1,7 @@
 package bankplatform.dao;
 
-import backplatform.dto.Transaction;
+
+import bankplatform.dto.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
