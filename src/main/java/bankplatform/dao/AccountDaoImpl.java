@@ -5,6 +5,7 @@ import bankplatform.dto.Transaction;
 import bankplatform.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,24 +19,25 @@ public class AccountDaoImpl implements AccountDao{
 
     @Autowired
     JdbcTemplate jdbc;
-
-    @Override
-    public Account mapRow(ResultSet resultSet, int i) throws SQLException {
-        Account account = new Account();
-        account.setAccountNumber(resultSet.getInt("accountNumber"));
-        account.setUserId(resultSet.getInt("userId"));
-        account.setAccountType(resultSet.getString("accountType"));
-        account.setBalance(resultSet.getBigDecimal("balance"));
-        return account;
+    public static final class accountMapper implements RowMapper<Account> {
+        @Override
+        public Account mapRow(ResultSet resultSet, int i) throws SQLException {
+            Account account = new Account();
+            account.setAccountNumber(resultSet.getInt("accountNumber"));
+            account.setUserId(resultSet.getInt("userId"));
+            account.setAccountType(resultSet.getString("accountType"));
+            account.setBalance(resultSet.getBigDecimal("balance"));
+            return account;
+        }
     }
 
     @Override
     public Account createAccount(Account account) {
-        final String INSERT_ACCOUNT = "INSERT INTO account(userId,accountType,balance)" + "VALUES(?,?,?);";
+        final String INSERT_ACCOUNT = "INSERT INTO account(accountNumber,userId,accountType,balance)" + "VALUES(?,?,?,?);";
         jdbc.update(INSERT_ACCOUNT,account.getUserId(),account.getAccountType(),account.getBalance());
         int newId = jdbc.queryForObject("SELECT MAX(accountNumber) FROM account", Integer.class);
         account.setAccountNumber(newId);
-        return account
+        return account;
     }
 
     @Override

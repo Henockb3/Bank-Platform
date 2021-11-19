@@ -19,8 +19,11 @@ public class BankServiceLayer implements BankPlatformServiceLayer {
     public void createAccount(User user, Account account) {
       //  User newUser = new User();
 
-        User newAccount = dao.createUser(user);
-        accountDao.createAccount(newAccount.getUserId());
+        account.setUserId(user.getUserId());
+        dao.createUser(user);
+        accountDao.createAccount(account);
 
     }
+
+
 }
