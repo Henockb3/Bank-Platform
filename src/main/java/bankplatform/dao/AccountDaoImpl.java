@@ -21,4 +21,9 @@ public class AccountDaoImpl implements AccountDao{
     public List<Transaction> getTransactionByDate(Transaction transactionDate) {
         return null;
     }
+
+    @Override
+    public Account transferMoney(Account amount) {
+        return null;
+    }
 }
