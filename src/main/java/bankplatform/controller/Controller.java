@@ -22,6 +22,7 @@ public class Controller {
         serviceLayer.createUser(user);
     }
     @PostMapping("/account")
+    @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody Account account){
         serviceLayer.createAccount(account);
     }
