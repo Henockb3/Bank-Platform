@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AccountDaoImpl implements AccountDao{
     @Override
-    public Account createAccount(User userId) {
+    public Account createAccount(int userId) {
         return null;
     }
 
