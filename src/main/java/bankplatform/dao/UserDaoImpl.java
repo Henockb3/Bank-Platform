@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    JdbcTemplate jdbc;
+    JdbcTemplate jdbc;//commetn
 
 public static final class userMapper implements RowMapper<User>{
 
