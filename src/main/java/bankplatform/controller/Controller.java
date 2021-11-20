@@ -44,6 +44,11 @@ public class Controller {
         return serviceLayer.getAllAccounts();
     }
 
+    @GetMapping("/accounts")
+    public List<Account> getCheckingAndSaving(int userId){
+        return serviceLayer.getAccountListByUserId(userId);
+    }
+
     @PutMapping("/transfer")
     public void transfer(int fromAccountNumber, int toAccountNumber, BigDecimal amount){
         serviceLayer.transferMoney(fromAccountNumber,toAccountNumber,amount);

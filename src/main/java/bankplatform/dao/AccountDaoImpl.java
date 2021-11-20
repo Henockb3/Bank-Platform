@@ -55,6 +55,11 @@ public class AccountDaoImpl implements AccountDao{
         final String UPDATE_ACCOUNT = "UPDATE account SET balance = ? WHERE accountNumber = ?;";
         jdbc.update(UPDATE_ACCOUNT,account.getBalance(),account.getAccountNumber());
     }
+    @Override
+    public List<Account> getAccountsById(int userId){
+        final String SELECT_ACCOUNTS = "SELECT * FROM account WHERE userId = ?;";
+        return jdbc.query(SELECT_ACCOUNTS, new accountMapper(), userId);
+    }
 
     @Override
     public List<Transaction> listAllTransactions(int accountNumber) {
