@@ -35,7 +35,7 @@ public class AccountDaoImpl implements AccountDao{
     @Override
     public Account createAccount(Account account) {
         final String INSERT_ACCOUNT = "INSERT INTO account(userId,accountType,balance)" + "VALUES(?,?,?);";
-        jdbc.update(INSERT_ACCOUNT,account.getUserId(),account.getAccountType(),account.getBalance());
+        jdbc.update(INSERT_ACCOUNT,account.getUserId(),account.getAccountType().toString(),account.getBalance());
         int newId = jdbc.queryForObject("SELECT MAX(accountNumber) FROM account", Integer.class);
         account.setAccountNumber(newId);
         return account;
