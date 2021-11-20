@@ -1,6 +1,7 @@
 package bankplatform.controller;
 
 import bankplatform.dto.Account;
+import bankplatform.dto.Transaction;
 import bankplatform.dto.User;
 import bankplatform.service.BankServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class Controller {
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody Account account){
         serviceLayer.createAccount(account);
+    }
+    @PostMapping("/transaction")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTransaction(@RequestBody Transaction transaction){
+        serviceLayer.generateTransaction(transaction);
     }
 
     @GetMapping("/userlist")
