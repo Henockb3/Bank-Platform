@@ -75,7 +75,6 @@ public class BankServiceLayer implements BankPlatformServiceLayer {
         accountDao.updateAccount(account1);
         accountDao.updateAccount(account2);
 
-
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         Transaction transaction1 = new Transaction();
