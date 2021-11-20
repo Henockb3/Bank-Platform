@@ -26,7 +26,7 @@ public class AccountDaoImpl implements AccountDao{
             Account account = new Account();
             account.setAccountNumber(resultSet.getInt("accountNumber"));
             account.setUserId(resultSet.getInt("userId"));
-            account.setAccountType(AccountType.valueOf(resultSet.getString("accountType")));
+            account.setAccountType(resultSet.getString("accountType"));
             account.setBalance(resultSet.getBigDecimal("balance"));
             return account;
         }
