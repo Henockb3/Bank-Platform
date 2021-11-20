@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -43,5 +44,8 @@ public class Controller {
         return serviceLayer.getAllAccounts();
     }
 
-
+    @PutMapping("/transfer")
+    public void transfer(int fromAccountNumber, int toAccountNumber, BigDecimal amount){
+        serviceLayer.transferMoney(fromAccountNumber,toAccountNumber,amount);
+    }
 }
