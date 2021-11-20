@@ -12,6 +12,4 @@ public interface AccountDao {
     Account getAccountByNumber(int accountNumber);
     void updateAccount(Account account);
     List<Account> getAccountsById(int userId);
-    List<Transaction> listAllTransactions(int accountNumber);
-    List<Transaction> getTransactionByDate(Transaction transactionDate);
 }
