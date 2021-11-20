@@ -25,7 +25,7 @@ public class Controller {
     }
     @PostMapping("/account")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody Account account){
+    public void createAccount(@RequestBody Account account){
         serviceLayer.createAccount(account);
     }
     @PostMapping("/transaction")
