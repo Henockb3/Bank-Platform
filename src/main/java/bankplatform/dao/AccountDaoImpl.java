@@ -1,6 +1,7 @@
 package bankplatform.dao;
 
 import bankplatform.dto.Account;
+import bankplatform.dto.AccountType;
 import bankplatform.dto.Transaction;
 import bankplatform.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AccountDaoImpl implements AccountDao{
             Account account = new Account();
             account.setAccountNumber(resultSet.getInt("accountNumber"));
             account.setUserId(resultSet.getInt("userId"));
-            account.setAccountType(resultSet.getString("accountType"));
+            account.setAccountType(AccountType.valueOf(resultSet.getString("accountType")));
             account.setBalance(resultSet.getBigDecimal("balance"));
             return account;
         }

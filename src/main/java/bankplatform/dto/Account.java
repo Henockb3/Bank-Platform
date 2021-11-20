@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 public class Account {
     int accountNumber;
     int userId;
-    String accountType;
+    AccountType accountType;
     BigDecimal balance;
 
     public Account() {
     }
 
-    public Account(int accountNumber, int userId, String accountType, BigDecimal balance) {
+    public Account(int accountNumber, int userId, AccountType accountType, BigDecimal balance) {
         this.accountNumber = accountNumber;
         this.userId = userId;
         this.accountType = accountType;
@@ -34,11 +34,11 @@ public class Account {
         this.userId = userId;
     }
 
-    public String getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 
