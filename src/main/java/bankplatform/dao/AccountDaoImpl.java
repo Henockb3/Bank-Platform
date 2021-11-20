@@ -61,13 +61,4 @@ public class AccountDaoImpl implements AccountDao{
         return jdbc.query(SELECT_ACCOUNTS, new accountMapper(), userId);
     }
 
-    @Override
-    public List<Transaction> listAllTransactions(int accountNumber) {
-        return null;
-    }
-
-    @Override
-    public List<Transaction> getTransactionByDate(Transaction transactionDate) {
-        return null;
-    }
 }
