@@ -33,4 +33,9 @@ public class BankServiceLayer implements BankPlatformServiceLayer {
     public List<User> getAllUsers() {
         return userDao.getUserList();
     }
+
+    @Override
+    public List<Account> getAllAccounts() {
+        return accountDao.getAccountList();
+    }
 }

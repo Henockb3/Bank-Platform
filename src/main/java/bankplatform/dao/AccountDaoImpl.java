@@ -33,7 +33,7 @@ public class AccountDaoImpl implements AccountDao{
 
     @Override
     public Account createAccount(Account account) {
-        final String INSERT_ACCOUNT = "INSERT INTO account(accountNumber,userId,accountType,balance)" + "VALUES(?,?,?,?);";
+        final String INSERT_ACCOUNT = "INSERT INTO account(userId,accountType,balance)" + "VALUES(?,?,?);";
         jdbc.update(INSERT_ACCOUNT,account.getUserId(),account.getAccountType(),account.getBalance());
         int newId = jdbc.queryForObject("SELECT MAX(accountNumber) FROM account", Integer.class);
         account.setAccountNumber(newId);
@@ -41,7 +41,13 @@ public class AccountDaoImpl implements AccountDao{
     }
 
     @Override
-    public List<Transaction> listAllTransactions(Account accountNumber) {
+    public List<Account> getAccountList(){
+        final String SELECT_ACCOUNTS = "SELECT * FROM account";
+        return jdbc.query(SELECT_ACCOUNTS, new accountMapper());
+    }
+
+    @Override
+    public List<Transaction> listAllTransactions(Account account) {
         return null;
     }
 

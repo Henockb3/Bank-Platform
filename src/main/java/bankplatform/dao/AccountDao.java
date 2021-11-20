@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface AccountDao {
     Account createAccount(Account account);
-    List<Transaction> listAllTransactions(Account accountNumber);
+    List<Account> getAccountList();
+    List<Transaction> listAllTransactions(Account account);
     List<Transaction> getTransactionByDate(Transaction transactionDate);
     Account transferMoney(Account amount);
 }

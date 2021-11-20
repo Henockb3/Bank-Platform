@@ -9,6 +9,7 @@ public interface BankPlatformServiceLayer {
     void createAccount(Account account);
     void createUser(User user);
     List<User> getAllUsers();
+    List<Account> getAllAccounts();
 
 
 }

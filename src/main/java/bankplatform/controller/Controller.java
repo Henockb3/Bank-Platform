@@ -32,5 +32,10 @@ public class Controller {
         return serviceLayer.getAllUsers();
     }
 
+    @GetMapping("/accountlist")
+    public List<Account> getAllAccounts() {
+        return serviceLayer.getAllAccounts();
+    }
+
 
 }
