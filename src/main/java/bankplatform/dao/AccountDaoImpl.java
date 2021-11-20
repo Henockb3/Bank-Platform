@@ -33,7 +33,7 @@ public class AccountDaoImpl implements AccountDao{
 
     @Override
     public Account createAccount(Account account) {
-        final String INSERT_ACCOUNT = "INSERT INTO account(accountNumber,userId,accountType,balance)" + "VALUES(?,?,?,?);";
+        final String INSERT_ACCOUNT = "INSERT INTO account(userId,accountType,balance)" + "VALUES(?,?,?);";
         jdbc.update(INSERT_ACCOUNT,account.getUserId(),account.getAccountType(),account.getBalance());
         int newId = jdbc.queryForObject("SELECT MAX(accountNumber) FROM account", Integer.class);
         account.setAccountNumber(newId);
@@ -41,17 +41,28 @@ public class AccountDaoImpl implements AccountDao{
     }
 
     @Override
-    public List<Transaction> listAllTransactions(Account accountNumber) {
+    public List<Account> getAccountList(){
+        final String SELECT_ACCOUNTS = "SELECT * FROM account";
+        return jdbc.query(SELECT_ACCOUNTS, new accountMapper());
+    }
+    @Override
+    public Account getAccountByNumber(int accountNumber){
+        final String SELECT_ACCOUNT = "SELECT * FROM account WHERE accountNumber = ?;";
+        return jdbc.queryForObject(SELECT_ACCOUNT, new accountMapper(), accountNumber);
+    }
+    @Override
+    public void updateAccount(Account account){
+        final String UPDATE_ACCOUNT = "UPDATE account SET balance = ? WHERE accountNumber = ?;";
+        jdbc.update(UPDATE_ACCOUNT,account.getBalance(),account.getAccountNumber());
+    }
+
+    @Override
+    public List<Transaction> listAllTransactions(int accountNumber) {
         return null;
     }
 
     @Override
     public List<Transaction> getTransactionByDate(Transaction transactionDate) {
-        return null;
-    }
-
-    @Override
-    public Account transferMoney(Account amount) {
         return null;
     }
 }

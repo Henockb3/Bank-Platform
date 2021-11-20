@@ -13,23 +13,23 @@ import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
+
     @Autowired
-    JdbcTemplate jdbc;
+    JdbcTemplate jdbc;//commetn
 
-public static final class userMapper implements RowMapper<User>{
+    public static final class userMapper implements RowMapper<User>{
 
-
-    @Override
-    public User mapRow(ResultSet resultSet, int i) throws SQLException {
-        User user = new User();
-        user.setUserId(resultSet.getInt("userId"));
-        user.setFirstName(resultSet.getString("firstName"));
-        user.setLastName(resultSet.getString("lastName"));
-        user.setEmail(resultSet.getString("email"));
-        user.setPassword(resultSet.getString("password"));
-        return user;
+        @Override
+        public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            User user = new User();
+            user.setUserId(resultSet.getInt("userId"));
+            user.setFirstName(resultSet.getString("firstName"));
+            user.setLastName(resultSet.getString("lastName"));
+            user.setEmail(resultSet.getString("email"));
+            user.setPassword(resultSet.getString("password"));
+            return user;
+        }
     }
-}
 
     @Override
     public User createUser(User user) {
@@ -37,8 +37,8 @@ public static final class userMapper implements RowMapper<User>{
                "VALUES(?,?,?,?)";
        jdbc.update(INSERT_USER,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword());
        int newId = jdbc.queryForObject("SELECT MAX(userId) FROM user", Integer.class);
-        user.setUserId(newId);
-        return user;
+       user.setUserId(newId);
+       return user;
     }
 
     @Override
@@ -59,10 +59,8 @@ public static final class userMapper implements RowMapper<User>{
 
     @Override
     public List<User> getUserList() {
-        final String SELECT_USERS = "SELECT * FROM  user u ";
-        List<User> users = jdbc.query(SELECT_USERS,
-                new userMapper());
-        return users;
+        final String SELECT_USERS = "SELECT * FROM  user";
+        return jdbc.query(SELECT_USERS, new userMapper());
     }
 
     @Override
