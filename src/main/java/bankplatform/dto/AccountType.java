@@ -1,5 +1,3 @@
 package bankplatform.dto;
 
-public enum AccountType {
-    CHECKING,SAVING;
-}
+public enum AccountType {CHECKING,SAVING}
