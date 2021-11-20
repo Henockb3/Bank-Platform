@@ -16,6 +16,8 @@ public interface BankPlatformServiceLayer {
 
     List<Account> getAccountListByUserId(int userId);
 
+    User getUserByEmailAndPassword(String email, String password);
+
     void transferMoney(int fromAccountNumber, int toAccountNumber, BigDecimal amount);
 
 

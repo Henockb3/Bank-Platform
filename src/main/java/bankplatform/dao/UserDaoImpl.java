@@ -42,14 +42,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-    try{
-        final String SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE userId = ?";
-        User user=jdbc.queryForObject(SELECT_USER_BY_EMAIL,new userMapper());
-        return user;
-    }catch(DataAccessException ex) {
-        return null;
-    }
+    public User getUserByEmailAndPassword(String email, String password) {
+        try{
+            final String SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE email = ? and password = ?;";
+            return jdbc.queryForObject(SELECT_USER_BY_EMAIL,new userMapper(),email,password);
+        }
+        catch(DataAccessException ex) {
+            return null;
+        }
     }
 
     @Override

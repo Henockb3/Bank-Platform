@@ -45,8 +45,13 @@ public class Controller {
     }
 
     @GetMapping("/accounts")
-    public List<Account> getCheckingAndSaving(int userId){
+    public List<Account> getCheckingAndSavings(int userId){
         return serviceLayer.getAccountListByUserId(userId);
+    }
+
+    @GetMapping("getUser")
+    public User getMyUser(String email, String password){
+        return serviceLayer.getUserByEmailAndPassword(email,password);
     }
 
     @PutMapping("/transfer")
