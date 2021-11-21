@@ -1,3 +1,11 @@
 package bankplatform.dto;
 
-public enum AccountType {CHECKING,SAVING}
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public enum AccountType {
+    @JsonProperty("checking")
+    CHECKING,
+    @JsonProperty("saving")
+    SAVING;
+}
