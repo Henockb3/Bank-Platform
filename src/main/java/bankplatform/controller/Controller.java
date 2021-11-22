@@ -34,6 +34,7 @@ public class Controller {
         serviceLayer.generateTransaction(transaction);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/userlist")
     public List<User> getAllUsers() {
         return serviceLayer.getAllUsers();
@@ -49,7 +50,7 @@ public class Controller {
         return serviceLayer.getAccountListByUserId(userId);
     }
 
-    @GetMapping("getUser")
+    @GetMapping("/getUser")
     public User getMyUser(String email, String password){
         return serviceLayer.getUserByEmailAndPassword(email,password);
     }
