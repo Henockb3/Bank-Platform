@@ -23,6 +23,7 @@ public class Controller {
     public void createUser(@RequestBody User user){
         serviceLayer.createUser(user);
     }
+
     @PostMapping("/account")
     @ResponseStatus(HttpStatus.CREATED)
     public void createAccount(@RequestBody Account account){
@@ -58,5 +59,11 @@ public class Controller {
     @PutMapping("/transfer")
     public void transfer(int fromAccountNumber, int toAccountNumber, BigDecimal amount){
         serviceLayer.transferMoney(fromAccountNumber,toAccountNumber,amount);
+    }
+
+    //gettransactions bby id
+    @GetMapping("/usertransactions")
+    public List<Transaction> getTransactionById(int userId){
+        return serviceLayer.getAllTransactionsById(userId);
     }
 }

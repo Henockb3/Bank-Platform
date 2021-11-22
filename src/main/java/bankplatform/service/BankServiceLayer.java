@@ -63,6 +63,11 @@ public class BankServiceLayer implements BankPlatformServiceLayer {
     }
 
     @Override
+    public List<Transaction> getAllTransactionsById(int userId) {
+        return transactionDao.getTransactionById(userId);
+    }
+
+    @Override
     public void transferMoney(int fromAccountNumber, int toAccountNumber, BigDecimal amount){
         Account account1 = accountDao.getAccountByNumber(fromAccountNumber);
         Account account2 = accountDao.getAccountByNumber(toAccountNumber);

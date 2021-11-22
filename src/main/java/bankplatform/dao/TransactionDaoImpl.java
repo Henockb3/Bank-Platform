@@ -1,6 +1,7 @@
 package bankplatform.dao;
 
 
+import bankplatform.dto.Account;
 import bankplatform.dto.Transaction;
 import bankplatform.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,15 @@ public class TransactionDaoImpl implements TransactionDao{
   public List<Transaction> getByAccountNumber(int accountNumber){
     final String sql = "SELECT * FROM transaction WHERE accountNumber=" + accountNumber + ";";
     return jdbcTemplate.query(sql, new TransactionMapper());
+  }
+
+  @Override
+  public List<Transaction> getTransactionById(int userId) {
+
+    final String sql1 = "select * from account where userId = "+userId;
+    List<Account> tempAccount = jdbcTemplate.query(sql1, new AccountDaoImpl.accountMapper());
+    final String sql = "select * from transaction where accountNumber = "+tempAccount.get(0).getAccountNumber()+" or accountNumber = "+ tempAccount.get(1).getAccountNumber();
+    return jdbcTemplate.query(sql,new TransactionMapper());
   }
 
 }
