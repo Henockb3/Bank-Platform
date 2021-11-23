@@ -75,4 +75,11 @@ public class Controller {
     public List<Transaction> getTransactionById(int userId){
         return serviceLayer.getAllTransactionsById(userId);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/externalaccounts")
+    public List<Account> getExternalAccount(int userId){
+        return serviceLayer.getExternalAccounts(userId);
+    }
+
 }

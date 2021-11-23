@@ -13,7 +13,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BankServiceLayer implements BankPlatformServiceLayer {
@@ -70,6 +72,13 @@ public class BankServiceLayer implements BankPlatformServiceLayer {
     @Override
     public List<Transaction> getAllTransactionsByAccountNumber(int accountNumber) {
         return transactionDao.getTransactionByAccountNumber(accountNumber);
+    }
+
+    @Override
+    public List<Account> getExternalAccounts(int userId) {
+        List<Account> list=new ArrayList<>();
+        list=accountDao.getAccountList();
+        return list.stream().filter(account -> account.getUserId()!=userId ).collect(Collectors.toList());
     }
 
     @Override

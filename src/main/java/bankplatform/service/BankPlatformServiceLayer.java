@@ -22,4 +22,5 @@ public interface BankPlatformServiceLayer {
 
     List<Transaction> getAllTransactionsById(int userId);
     List<Transaction> getAllTransactionsByAccountNumber(int accountNumber);
+    List<Account> getExternalAccounts(int userId);
 }
