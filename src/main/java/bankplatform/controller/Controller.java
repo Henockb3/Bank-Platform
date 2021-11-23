@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class Controller {
 
     @Autowired
@@ -35,7 +36,7 @@ public class Controller {
         serviceLayer.generateTransaction(transaction);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/userlist")
     public List<User> getAllUsers() {
         return serviceLayer.getAllUsers();
@@ -51,6 +52,7 @@ public class Controller {
         return serviceLayer.getAccountListByUserId(userId);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/getUser")
     public User getMyUser(String email, String password){
         return serviceLayer.getUserByEmailAndPassword(email,password);
@@ -61,7 +63,6 @@ public class Controller {
         serviceLayer.transferMoney(fromAccountNumber,toAccountNumber,amount);
     }
 
-    //gettransactions bby id
     @GetMapping("/usertransactions")
     public List<Transaction> getTransactionById(int userId){
         return serviceLayer.getAllTransactionsById(userId);
