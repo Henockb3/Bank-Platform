@@ -10,4 +10,5 @@ public interface TransactionDao {
   List<Transaction> getByTimeRange(String beginning, String ending);
   List<Transaction> getByAccountNumber(int accountNumber);
   List<Transaction> getTransactionById(int userId);
+  List<Transaction> getTransactionByAccountNumber(int accountNumber);
 }

@@ -81,4 +81,10 @@ public class TransactionDaoImpl implements TransactionDao{
     return jdbcTemplate.query(sql,new TransactionMapper());
   }
 
+  @Override
+  public List<Transaction> getTransactionByAccountNumber(int accountNumber) {
+    final String sql = "select * from transaction where accountNumber = "+accountNumber;
+    return jdbcTemplate.query(sql,new TransactionMapper());
+  }
+
 }
