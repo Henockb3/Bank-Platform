@@ -19,34 +19,40 @@ public class Controller {
     @Autowired
     BankServiceLayer serviceLayer;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User user){
         serviceLayer.createUser(user);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/account")
     @ResponseStatus(HttpStatus.CREATED)
     public void createAccount(@RequestBody Account account){
         serviceLayer.createAccount(account);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/transaction")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTransaction(@RequestBody Transaction transaction){
         serviceLayer.generateTransaction(transaction);
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/userlist")
     public List<User> getAllUsers() {
         return serviceLayer.getAllUsers();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/accountlist")
     public List<Account> getAllAccounts() {
         return serviceLayer.getAllAccounts();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/accounts")
     public List<Account> getCheckingAndSavings(int userId){
         return serviceLayer.getAccountListByUserId(userId);
@@ -58,12 +64,14 @@ public class Controller {
         return serviceLayer.getUserByEmailAndPassword(email,password);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/transfer")
     public void transfer(int fromAccountNumber, int toAccountNumber, BigDecimal amount){
         serviceLayer.transferMoney(fromAccountNumber,toAccountNumber,amount);
     }
 
-    @GetMapping("/usertransactions")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/transactions")
     public List<Transaction> getTransactionById(int userId){
         return serviceLayer.getAllTransactionsById(userId);
     }
