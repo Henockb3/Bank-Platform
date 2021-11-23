@@ -21,4 +21,5 @@ public interface BankPlatformServiceLayer {
     void transferMoney(int fromAccountNumber, int toAccountNumber, BigDecimal amount);
 
     List<Transaction> getAllTransactionsById(int userId);
+    List<Transaction> getAllTransactionsByAccountNumber(int accountNumber);
 }
